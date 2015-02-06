@@ -12,6 +12,7 @@ The XLD Oracle SOA plugin is a XL Deploy plugin that adds capability for deployi
 
 * **Requirements**
 	* **XL Deploy** 4.0.0
+	* **XL Deploy** Weblogic plugin
 
 # Installation #
 

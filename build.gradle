@@ -43,9 +43,6 @@ configurations {
 }
 
 dependencies {
-    compile "com.xebialabs.deployit:udm-plugin-api:$apiVersion"
-    compile "com.xebialabs.deployit:engine-spi:$apiVersion"
-    compile "com.xebialabs.deployit:engine-api:$apiVersion"
     testCompile "junit:junit-dep:4.10"
     itestCompile fileTree(dir: "$xldeployHome/lib", include: ['*.jar'])
 }
