@@ -1,0 +1,23 @@
+apply plugin: "commercial-plugin"
+
+version = '3.9.4-SNAPSHOT'
+
+docgen.product = 'XL Deploy'
+docgen.oracleSOAPluginManual = [title: 'Oracle SOA Plugin Manual', appendCiReference: true, prefixes: 'soa']
+
+dependencies {
+    compile deployit_remoting_plugin
+    compile deployit_python_plugin
+    compile deployit_generic_plugin
+    compile overthere
+    compile freemarker
+    compile 'com.xebialabs.deployit.plugins:wls-plugin:3.9.2'
+
+    docgenerator deployit_doc_generator
+
+    testCompile testng
+    testCompile overcast
+    testCompile commons_io
+
+    testRuntime deployit_file_plugin
+}

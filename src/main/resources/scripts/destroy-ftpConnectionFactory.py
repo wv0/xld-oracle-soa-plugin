@@ -1,0 +1,1 @@
+print 'Undeploying ftp connection factory [' + deployed.appName + '] is currently not supported'

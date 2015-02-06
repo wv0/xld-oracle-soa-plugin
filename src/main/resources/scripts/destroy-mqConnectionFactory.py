@@ -1,0 +1,1 @@
+print 'Undeploying application [' + deployed.appName + '] is currently not supported'

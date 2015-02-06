@@ -1,0 +1,151 @@
+<synthetic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.xebialabs.com/deployit/synthetic" xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd">
+
+	<type-modification type="wls.Domain">
+		<property name="soaPort" required="true" description="Soa port to be used for bpel deployment" category="SOA" />
+	</type-modification>
+
+	<type type="soa.CompositeSOADeployable" extends="wls.ExtensibleDeployedArtifact" deployable-type="soa.CompositeSOADeployableSpec" container-type="wls.WlsContainer">
+		<generate-deployable type="soa.CompositeSOADeployableSpec" extends="udm.BaseDeployableFolderArtifact" />
+		<property name="partition" />
+		<property name="revisionVersion" />
+		<property name="soaServiceName" kind="string" required="false" default="" />
+		<property name="forcedefault" kind="string" />
+		<property name="createScript" default="scripts/soaDeploy.py" hidden="true" />
+		<property name="modifyScript" default="scripts/soaDeploy.py" hidden="true" />
+		<property name="destroyScript" default="scripts/soaUndeploy.py" hidden="true" />
+		<property name="startScript" default="scripts/dummy.py" hidden="true" />
+		<property name="stopScript" default="scripts/dummy.py" hidden="true" />
+		<property name="scanPlaceholders" kind="boolean" default="true" hidden="true" required="false" />
+		<property name="retainRemoteWorkingDirectory" kind="boolean" default="true" hidden="true" required="false" />
+		<property name="order" default="76" hidden="true" />
+	</type>
+
+
+	<type type="soa.MdsSOADeployable" extends="wls.ExtensibleDeployedArtifact" deployable-type="soa.MdsSOADeployableSpec" container-type="wls.WlsContainer">
+		<generate-deployable type="soa.MdsSOADeployableSpec" extends="udm.BaseDeployableArtifact" copy-default-values="true" />
+		<property name="forcedefault" kind="string" default="true" />
+		<property name="createScript" default="scripts/mdsDeploy.py" hidden="true" />
+		<property name="order" default="75" hidden="true" />
+		<!-- Note: modify is the same as deploy so we reuse the script. -->
+		<property name="modifyScript" default="scripts/mdsDeploy.py" hidden="true" />
+		<property name="destroyScript" default="scripts/mdsUndeploy.py" hidden="true" />
+		<property name="stopScript" default="scripts/dummy.py" hidden="true"/>
+        <property name="startScript" default="scripts/dummy.py" hidden="true"/>
+	</type>
+
+	<type type="soa.DBConnectionFactory" extends="wls.Resource" deployable-type="soa.DBConnectionFactorySpec" container-type="wls.WlsContainer">
+		<generate-deployable type="soa.DBConnectionFactorySpec" extends="wls.ResourceSpec" description="Specification for a DB connection factory" />
+		<property name="createScript" default="scripts/create-dbConnectionFactory.py" hidden="true" />
+		<property name="destroyScript" default="scripts/destroy-dbConnectionFactory.py" hidden="true" />
+		<property name="retainRemoteWorkingDirectory" kind="boolean" default="true" hidden="true" required="false" />
+		<property name="appName" />
+		<property name="dataSourceType" />
+		<property name="SoaId" />
+		<property name="jndiName" />
+		<property name="dsJndiName" />
+		<property name="AppPath" />
+		<property name="PlanPath" />
+		<property name="Target" />
+	</type>
+
+	<type type="soa.MQConnectionFactory" extends="wls.Resource" deployable-type="soa.MQConnectionFactorySpec" container-type="wls.WlsContainer">
+		<generate-deployable type="soa.MQConnectionFactorySpec" extends="wls.ResourceSpec" description="Specification for a MQ connection factory" />
+		<property name="createScript" default="scripts/create-mqConnectionFactory.py" hidden="true" />
+		<property name="destroyScript" default="scripts/destroy-mqConnectionFactory.py" hidden="true" />
+		<property name="retainRemoteWorkingDirectory" kind="boolean" default="true" hidden="true" required="false" />
+		<property name="appName" />
+		<property name="SoaId" />
+		<property name="jndiName" />
+		<property name="Channel" />
+		<property name="HostName" />
+		<property name="PortNumber" />
+		<property name="QueueManagerName" />
+		<property name="AppPath" />
+		<property name="PlanPath" />
+		<property name="Target" />
+	</type>
+
+	<type type="soa.FTPConnectionFactory" extends="wls.Resource" deployable-type="soa.FTPConnectionFactorySpec" container-type="wls.WlsContainer">
+		<generate-deployable type="soa.FTPConnectionFactorySpec" extends="wls.ResourceSpec" description="Specification for a FTP connection factory" />
+		<property name="createScript" default="scripts/create-ftpConnectionFactory.py" hidden="true" />
+		<property name="destroyScript" default="scripts/destroy-ftpConnectionFactory.py" hidden="true" />
+		<property name="retainRemoteWorkingDirectory" kind="boolean" default="true" hidden="true" required="false" />
+		<property name="appName" />
+		<property name="SoaId" />
+		<property name="jndiName" />
+		<property name="HostName" />
+		<property name="username" />
+		<property name="password" required="false" default="" kind="string" />
+		<property name="AppPath" />
+		<property name="PlanPath" />
+		<property name="Target" />
+	</type>
+
+	<type type="soa.FileConnectionFactory" extends="wls.Resource" deployable-type="soa.FileConnectionFactorySpec" container-type="wls.WlsContainer">
+		<generate-deployable type="soa.FileConnectionFactorySpec" extends="wls.ResourceSpec" description="Specification for a File connection factory" />
+		<property name="createScript" default="scripts/create-fileConnectionFactory.py" hidden="true" />
+		<property name="destroyScript" default="scripts/destroy-fileConnectionFactory.py" hidden="true" />
+		<property name="retainRemoteWorkingDirectory" kind="boolean" default="true" hidden="true" required="false" />
+		<property name="appName" />
+		<property name="SoaId" />
+		<property name="jndiName" />
+		<property name="controlDir" />
+		<property name="AppPath" />
+		<property name="PlanPath" />
+		<property name="Target" />
+	</type>
+
+	<type type="soa.JMSConnectionFactory" extends="wls.Resource" deployable-type="soa.JMSConnectionFactorySpec" container-type="wls.WlsContainer">
+         <generate-deployable type="soa.JMSConnectionFactorySpec" extends="wls.ResourceSpec" description="Specification for a JMS connection factory" />
+         <property name="createScript" default="scripts/create-jmsConnectionFactory.py" hidden="true" />
+         <property name="destroyScript" default="scripts/destroy-jmsConnectionFactory.py" hidden="true" />
+         <property name="retainRemoteWorkingDirectory" kind="boolean" default="true" hidden="true" required="false" />
+         <property name="appName" />
+         <property name="dataSourceType" />
+         <property name="SoaId" />
+         <property name="jndiName" />
+         <property name="dsJndiName" />
+         <property name="AppPath" />
+         <property name="PlanPath" />
+         <property name="Target" />
+	</type>
+
+
+	<type type="soa.UserMessagingdriverEmail" extends="wls.Resource" deployable-type="soa.UserMessagingdriverEmailSpec" container-type="wls.WlsContainer">
+		<generate-deployable type="soa.UserMessagingdriverEmailSpec" extends="wls.ResourceSpec" description="Specification for a UserMessagingdriver Email" />
+		<property name="createScript" default="scripts/create-messagingDriverEmail.py" hidden="true" />
+		<property name="destroyScript" default="scripts/destroy-messagingDriverEmail.py" hidden="true" />
+		<property name="retainRemoteWorkingDirectory" kind="boolean" default="true" hidden="true" required="false" />
+		<property name="OutgoingMailServer" />
+		<property name="OutgoingMailServerPort"/>
+		<property name="OutgoingMailServerSecurity" />
+		<property name="OutgoingDefaultFromAddress" required="false"/>
+		<property name="OutgoingUsername"  required="false"/>
+		<property name="OutgoingPassword"  required="false"/>
+		<property name="ASNSDriverEmailFromAddress" />
+		<property name="ASNSDriverEmailRespondAddress" />
+		<property name="ASNSDriverEmailReplyAddress" />
+		<property name="HWFMailerNotificationMode" />
+		<property name="ASNSDriverPropertyName" />
+		<property name="ASNSDriverPropertyValue" />
+		<property name="ASNSDriverDriverName" />
+		<property name="WNLEmailFromAddress" />
+		<property name="EINTAKEEmailFromAddress" />
+	</type>
+
+	<type type="soa.ExtensionLibrary" extends="wls.DeployedFile" deployable-type="soa.ExtensionLibrarySpec" container-type="wls.WlsContainer">
+		<generate-deployable type="soa.ExtensionLibrarySpec" extends="wls.File" description="Soa extension lib that is deployed to the server extension directory" />
+		<property name="AntHomeDirectory" />
+	</type>
+
+	<type type="soa.XSLResources" extends="generic.ExecutedScript" deployable-type="soa.XSLResourcesSpec" container-type="overthere.SshHost">
+		<generate-deployable type="soa.XSLResourcesSpec" extends="udm.BaseDeployableArchiveArtifact" />
+		<property name="createScript" default="scripts/create-XslResources.sh" hidden="true" />
+		<property name="destroyScript" default="scripts/destroy-XslResources.sh" hidden="true" />
+		<property name="modifyScript" default="scripts/modify-XslResources.sh" hidden="true" />
+		<property name="targetPath" />
+		<property name="createTargetPath" default="true" />
+		<property name="classpathResources" kind="set_of_string" default="scripts/createDirectory.sh,scripts/unzipResources.sh" hidden="false" required="true"/>
+	</type>
+
+</synthetic>
