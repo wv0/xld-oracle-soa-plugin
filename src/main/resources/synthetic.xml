@@ -14,7 +14,7 @@
 	<type type="soa.CompositeSOADeployable" extends="wls.ExtensibleDeployedArtifact" deployable-type="soa.CompositeSOADeployableSpec" container-type="wls.WlsContainer">
 		<generate-deployable type="soa.CompositeSOADeployableSpec" extends="udm.BaseDeployableFolderArtifact" />
 		<property name="partition" />
-		<property name="revisionVersion" />
+		<property name="revisionVersion" description="The revision version (will be used in case of undeployment)"/>
 		<property name="soaServiceName" kind="string" required="false" default="" />
 		<property name="forcedefault" kind="string" />
 		<property name="createScript" default="scripts/soaDeploy.py" hidden="true" />

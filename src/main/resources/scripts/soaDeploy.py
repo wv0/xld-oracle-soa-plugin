@@ -24,7 +24,11 @@ old_stdout = sys.stdout
 redirectedStdout = StringIO()
 sys.stdout = redirectedStdout
 
-managedServerUrl="t3://"+deployed.container.host.address+":"+str(deployed.container.port)
+if deployed.container.type == "wls.Cluster":
+    managedServerUrl="t3://"+deployed.container.servers[0].host.address+":"+str(deployed.container.servers[0].host.port)
+else:
+    managedServerUrl="t3://"+deployed.container.host.address+":"+str(deployed.container.port)	
+
 connect(deployed.container.domain.username, deployed.container.domain.password, managedServerUrl)
 
 print 'Creating partition [' + deployed.partition + "] on [" + managedServerUrl + ']'
