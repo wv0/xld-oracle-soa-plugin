@@ -25,9 +25,9 @@ redirectedStdout = StringIO()
 sys.stdout = redirectedStdout
 
 if deployed.container.type == "wls.Cluster":
-    managedServerUrl="t3://"+deployed.container.servers[0].host.address+":"+str(deployed.container.servers[0].host.port)
+    managedServerUrl="t3://"+deployed.container.servers[0].host.address+":"+str(deployed.container.servers[0].port)
 else:
-    managedServerUrl="t3://"+deployed.container.host.address+":"+str(deployed.container.port)	
+    managedServerUrl="t3://"+deployed.container.host.address+":"+str(deployed.container.port)
 
 connect(deployed.container.domain.username, deployed.container.domain.password, managedServerUrl)
 
@@ -50,16 +50,21 @@ configplan=glob.glob(theurl+'/*.xml')
 old_stdout = sys.stdout
 redirectedStdout = StringIO()
 sys.stdout = redirectedStdout
-serverUrl="http://"+deployed.container.host.address+":"+str(deployed.container.port)
+
+if deployed.container.type == "wls.Cluster":
+    server_url="t3://"+deployed.container.servers[0].host.address+":"+str(deployed.container.servers[0].port)
+else:
+    server_url="t3://"+deployed.container.host.address+":"+str(deployed.container.port)
+
 
 if configplan and len(configplan) > 0:
  for jar in jars:
-  print 'Deploying [' + jar + '] with plan [' + str(configplan) + '] on [' + serverUrl + ']'
-  sca_deployComposite(serverUrl, jar, True, deployed.container.domain.username, deployed.container.domain.password, deployed.forcedefault == 'true', configplan[0], partition=deployed.partition)
+  print 'Deploying [' + jar + '] with plan [' + str(configplan) + '] on [' + server_url + ']'
+  sca_deployComposite(server_url, jar, True, deployed.container.domain.username, deployed.container.domain.password, deployed.forcedefault == 'true', configplan[0], partition=deployed.partition)
 else:
  for jar in jars:
-  print 'Deploying [' + jar + '] on [' + serverUrl + ']'
-  sca_deployComposite(serverUrl, jar, True, deployed.container.domain.username, deployed.container.domain.password, deployed.forcedefault == 'true', partition=deployed.partition)
+  print 'Deploying [' + jar + '] on [' + server_url + ']'
+  sca_deployComposite(server_url, jar, True, deployed.container.domain.username, deployed.container.domain.password, deployed.forcedefault == 'true', partition=deployed.partition)
 
 sys.stdout = old_stdout
 
