@@ -52,9 +52,9 @@ redirectedStdout = StringIO()
 sys.stdout = redirectedStdout
 
 if deployed.container.type == "wls.Cluster":
-    server_url="t3://"+deployed.container.servers[0].host.address+":"+str(deployed.container.servers[0].port)
+    server_url="http://"+deployed.container.servers[0].host.address+":"+str(deployed.container.servers[0].port)
 else:
-    server_url="t3://"+deployed.container.host.address+":"+str(deployed.container.port)
+    server_url="http://"+deployed.container.host.address+":"+str(deployed.container.port)
 
 
 if configplan and len(configplan) > 0:
