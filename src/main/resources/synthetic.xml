@@ -20,11 +20,10 @@
 		<property name="createScript" default="scripts/soaDeploy.py" hidden="true" />
 		<property name="modifyScript" default="scripts/soaDeploy.py" hidden="true" />
 		<property name="destroyScript" default="scripts/soaUndeploy.py" hidden="true" />
-		<property name="startScript" default="scripts/dummy.py" hidden="true" />
-		<property name="stopScript" default="scripts/dummy.py" hidden="true" />
 		<property name="scanPlaceholders" kind="boolean" default="true" hidden="true" required="false" />
 		<property name="retainRemoteWorkingDirectory" kind="boolean" default="true" hidden="true" required="false" />
 		<property name="order" default="76" hidden="true" />
+		<property name="isStartOrStopOperationRequired" default="false" hidden="true" kind="boolean"/>
 	</type>
 
 
@@ -36,8 +35,7 @@
 		<!-- Note: modify is the same as deploy so we reuse the script. -->
 		<property name="modifyScript" default="scripts/mdsDeploy.py" hidden="true" />
 		<property name="destroyScript" default="scripts/mdsUndeploy.py" hidden="true" />
-		<property name="stopScript" default="scripts/dummy.py" hidden="true"/>
-        <property name="startScript" default="scripts/dummy.py" hidden="true"/>
+		<property name="isStartOrStopOperationRequired" default="false" hidden="true" kind="boolean"/>
 	</type>
 
 	<type type="soa.DBConnectionFactory" extends="wls.Resource" deployable-type="soa.DBConnectionFactorySpec" container-type="wls.WlsContainer">

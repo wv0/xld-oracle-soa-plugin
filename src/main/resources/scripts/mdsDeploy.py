@@ -4,17 +4,18 @@
 # FOR A PARTICULAR PURPOSE. THIS CODE AND INFORMATION ARE NOT SUPPORTED BY XEBIALABS.
 #
 
-import glob
-
 deployedName=str(deployed.name)
 
 print 'Processing [' + deployedName + ']'
 
-serverUrl="http://" + deployed.container.domain.host.address + ":" + str(deployed.container. port)
-
 theurl=str(deployed.file)
 
-print 'Deploying [' + theurl + '] to [' +  serverUrl + ']'
+print 'Deploying [' + theurl + '] to [' +  deployed.container.name + ']'
 
-importMetadata(application='soa-infra', server = deployed.container.name ,fromLocation= theurl ,docs='/**', remote='true')
-#sca_deployComposite(serverUrl, deployed.file, true, deployed.container.domain.username, deployed.container.domain.password, deployed.forcedefault == 'true')
+if deployed.container.type == "wls.Cluster":
+    server_name=deployed.container.servers[0].name
+else:
+    server_name=deployed.container.name
+
+
+importMetadata(application='soa-infra', server = server_name ,fromLocation= theurl ,docs='/**', remote='true')
