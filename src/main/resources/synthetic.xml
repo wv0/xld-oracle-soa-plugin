@@ -23,6 +23,9 @@
 		<property name="scanPlaceholders" kind="boolean" default="true" hidden="true" required="false" />
 		<property name="retainRemoteWorkingDirectory" kind="boolean" default="true" hidden="true" required="false" />
 		<property name="order" default="76" hidden="true" />
+		<property name="createOrder" kind="integer" default="65" hidden="true"/>
+		<property name="modifyOrder" kind="integer" default="65" hidden="true"/>
+		<property name="destroyOrder" kind="integer" default="38" hidden="true"/>
 		<property name="isStartOrStopOperationRequired" default="false" hidden="true" kind="boolean"/>
 	</type>
 
@@ -54,6 +57,9 @@
 		<property name="AppPath" />
 		<property name="PlanPath" />
 		<property name="Target" />
+		<property name="createOrder" kind="integer" default="62" hidden="true"/>
+		<property name="modifyOrder" kind="integer" default="62" hidden="true"/>
+		<property name="destroyOrder" kind="integer" default="39" hidden="true"/>
 	</type>
 
 	<type type="soa.MQConnectionFactory" extends="wls.Resource" deployable-type="soa.MQConnectionFactorySpec" container-type="wls.WlsContainer">
@@ -71,6 +77,9 @@
 		<property name="AppPath" />
 		<property name="PlanPath" />
 		<property name="Target" />
+		<property name="createOrder" kind="integer" default="62" hidden="true"/>
+		<property name="modifyOrder" kind="integer" default="62" hidden="true"/>
+		<property name="destroyOrder" kind="integer" default="39" hidden="true"/>
 	</type>
 
 	<type type="soa.FTPConnectionFactory" extends="wls.Resource" deployable-type="soa.FTPConnectionFactorySpec" container-type="wls.WlsContainer">
@@ -87,6 +96,9 @@
 		<property name="AppPath" />
 		<property name="PlanPath" />
 		<property name="Target" />
+		<property name="createOrder" kind="integer" default="62" hidden="true"/>
+		<property name="modifyOrder" kind="integer" default="62" hidden="true"/>
+		<property name="destroyOrder" kind="integer" default="39" hidden="true"/>
 	</type>
 
 	<type type="soa.FileConnectionFactory" extends="wls.Resource" deployable-type="soa.FileConnectionFactorySpec" container-type="wls.WlsContainer">
@@ -101,6 +113,9 @@
 		<property name="AppPath" />
 		<property name="PlanPath" />
 		<property name="Target" />
+		<property name="createOrder" kind="integer" default="62" hidden="true"/>
+		<property name="modifyOrder" kind="integer" default="62" hidden="true"/>
+		<property name="destroyOrder" kind="integer" default="39" hidden="true"/>
 	</type>
 
 	<type type="soa.JMSConnectionFactory" extends="wls.Resource" deployable-type="soa.JMSConnectionFactorySpec" container-type="wls.WlsContainer">
@@ -116,6 +131,9 @@
          <property name="AppPath" />
          <property name="PlanPath" />
          <property name="Target" />
+		 <property name="createOrder" kind="integer" default="62" hidden="true"/>
+		 <property name="modifyOrder" kind="integer" default="62" hidden="true"/>
+		 <property name="destroyOrder" kind="integer" default="39" hidden="true"/>
 	</type>
 
 
