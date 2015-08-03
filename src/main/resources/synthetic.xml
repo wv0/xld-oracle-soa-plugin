@@ -32,6 +32,9 @@
 		<property name="forcedefault" kind="string" default="true" />
 		<property name="createScript" default="scripts/mdsDeploy.py" hidden="true" />
 		<property name="order" default="75" hidden="true" />
+		<property name="createOrder" kind="integer" default="60" hidden="true"/>
+		<property name="modifyOrder" kind="integer" default="60" hidden="true"/>
+		<property name="destroyOrder" kind="integer" default="40" hidden="true"/>
 		<!-- Note: modify is the same as deploy so we reuse the script. -->
 		<property name="modifyScript" default="scripts/mdsDeploy.py" hidden="true" />
 		<property name="destroyScript" default="scripts/mdsUndeploy.py" hidden="true" />
