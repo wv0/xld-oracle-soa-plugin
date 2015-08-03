@@ -55,7 +55,9 @@ cfAppPath = deployed.AppPath
 cfId = deployed.SoaId
 cfJndiName = deployed.jndiName
 cfPlanPath = deployed.PlanPath
-cfTarget = deployed.Target
+cfTarget = deployed.container.name
+if deployed.Target:
+	cfTarget = deployed.Target
 ftpHostName = deployed.HostName
 ftpUserName = deployed.username
 ftpPassword = deployed.password

@@ -54,7 +54,9 @@ cfId = deployed.SoaId
 cfJndiName = deployed.jndiName
 cfPlanPath = deployed.PlanPath
 dsJndiName = deployed.dsJndiName
-cfTarget = deployed.Target
+cfTarget = deployed.container.name
+if deployed.Target:
+    cfTarget = deployed.Target
 
 checkPlanPath(cfPlanPath)
 

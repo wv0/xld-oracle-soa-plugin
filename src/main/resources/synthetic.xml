@@ -44,31 +44,34 @@
 		<property name="isStartOrStopOperationRequired" default="false" hidden="true" kind="boolean"/>
 	</type>
 
-	<type type="soa.DBConnectionFactory" extends="wls.Resource" deployable-type="soa.DBConnectionFactorySpec" container-type="wls.WlsContainer">
-		<generate-deployable type="soa.DBConnectionFactorySpec" extends="wls.ResourceSpec" description="Specification for a DB connection factory" />
-		<property name="createScript" default="scripts/create-dbConnectionFactory.py" hidden="true" />
-		<property name="destroyScript" default="scripts/destroy-dbConnectionFactory.py" hidden="true" />
-		<property name="retainRemoteWorkingDirectory" kind="boolean" default="true" hidden="true" required="false" />
-		<property name="appName" />
-		<property name="dataSourceType" />
-		<property name="SoaId" />
-		<property name="jndiName" />
-		<property name="dsJndiName" />
-		<property name="AppPath" />
-		<property name="PlanPath" />
-		<property name="Target" />
+	<type type="soa.Resource" extends="wls.Resource" deployable-type="soa.ResourceSpec" container-type="wls.WlsContainer" virtual="true">
+		<generate-deployable type="soa.ResourceSpec" extends="wls.ResourceSpec" description="Specification for a SOA Resource" />
+		<property name="SoaId" required="true" kind="string" description="Makes the deployment plan variables unique"/>
+		<property name="Target" required="false" kind="string" description="The target container to map the SOA Resource to. If not defined, the mapped container name will be used."/>
 		<property name="createOrder" kind="integer" default="62" hidden="true"/>
 		<property name="modifyOrder" kind="integer" default="62" hidden="true"/>
 		<property name="destroyOrder" kind="integer" default="39" hidden="true"/>
 	</type>
 
-	<type type="soa.MQConnectionFactory" extends="wls.Resource" deployable-type="soa.MQConnectionFactorySpec" container-type="wls.WlsContainer">
-		<generate-deployable type="soa.MQConnectionFactorySpec" extends="wls.ResourceSpec" description="Specification for a MQ connection factory" />
+	<type type="soa.DBConnectionFactory" extends="soa.Resource" deployable-type="soa.DBConnectionFactorySpec" container-type="wls.WlsContainer">
+		<generate-deployable type="soa.DBConnectionFactorySpec" extends="soa.ResourceSpec" description="Specification for a DB connection factory" />
+		<property name="createScript" default="scripts/create-dbConnectionFactory.py" hidden="true" />
+		<property name="destroyScript" default="scripts/destroy-dbConnectionFactory.py" hidden="true" />
+		<property name="retainRemoteWorkingDirectory" kind="boolean" default="true" hidden="true" required="false" />
+		<property name="appName" />
+		<property name="dataSourceType" />
+		<property name="jndiName" />
+		<property name="dsJndiName" />
+		<property name="AppPath" />
+		<property name="PlanPath" />
+	</type>
+
+	<type type="soa.MQConnectionFactory" extends="soa.Resource" deployable-type="soa.MQConnectionFactorySpec" container-type="wls.WlsContainer">
+		<generate-deployable type="soa.MQConnectionFactorySpec" extends="soa.ResourceSpec" description="Specification for a MQ connection factory" />
 		<property name="createScript" default="scripts/create-mqConnectionFactory.py" hidden="true" />
 		<property name="destroyScript" default="scripts/destroy-mqConnectionFactory.py" hidden="true" />
 		<property name="retainRemoteWorkingDirectory" kind="boolean" default="true" hidden="true" required="false" />
 		<property name="appName" />
-		<property name="SoaId" />
 		<property name="jndiName" />
 		<property name="Channel" />
 		<property name="HostName" />
@@ -76,64 +79,45 @@
 		<property name="QueueManagerName" />
 		<property name="AppPath" />
 		<property name="PlanPath" />
-		<property name="Target" />
-		<property name="createOrder" kind="integer" default="62" hidden="true"/>
-		<property name="modifyOrder" kind="integer" default="62" hidden="true"/>
-		<property name="destroyOrder" kind="integer" default="39" hidden="true"/>
 	</type>
 
-	<type type="soa.FTPConnectionFactory" extends="wls.Resource" deployable-type="soa.FTPConnectionFactorySpec" container-type="wls.WlsContainer">
-		<generate-deployable type="soa.FTPConnectionFactorySpec" extends="wls.ResourceSpec" description="Specification for a FTP connection factory" />
+	<type type="soa.FTPConnectionFactory" extends="soa.Resource" deployable-type="soa.FTPConnectionFactorySpec" container-type="wls.WlsContainer">
+		<generate-deployable type="soa.FTPConnectionFactorySpec" extends="soa.ResourceSpec" description="Specification for a FTP connection factory" />
 		<property name="createScript" default="scripts/create-ftpConnectionFactory.py" hidden="true" />
 		<property name="destroyScript" default="scripts/destroy-ftpConnectionFactory.py" hidden="true" />
 		<property name="retainRemoteWorkingDirectory" kind="boolean" default="true" hidden="true" required="false" />
 		<property name="appName" />
-		<property name="SoaId" />
 		<property name="jndiName" />
 		<property name="HostName" />
 		<property name="username" />
 		<property name="password" required="false" default="" kind="string" />
 		<property name="AppPath" />
 		<property name="PlanPath" />
-		<property name="Target" />
-		<property name="createOrder" kind="integer" default="62" hidden="true"/>
-		<property name="modifyOrder" kind="integer" default="62" hidden="true"/>
-		<property name="destroyOrder" kind="integer" default="39" hidden="true"/>
 	</type>
 
-	<type type="soa.FileConnectionFactory" extends="wls.Resource" deployable-type="soa.FileConnectionFactorySpec" container-type="wls.WlsContainer">
-		<generate-deployable type="soa.FileConnectionFactorySpec" extends="wls.ResourceSpec" description="Specification for a File connection factory" />
+	<type type="soa.FileConnectionFactory" extends="soa.Resource" deployable-type="soa.FileConnectionFactorySpec" container-type="wls.WlsContainer">
+		<generate-deployable type="soa.FileConnectionFactorySpec" extends="soa.ResourceSpec" description="Specification for a File connection factory" />
 		<property name="createScript" default="scripts/create-fileConnectionFactory.py" hidden="true" />
 		<property name="destroyScript" default="scripts/destroy-fileConnectionFactory.py" hidden="true" />
 		<property name="retainRemoteWorkingDirectory" kind="boolean" default="true" hidden="true" required="false" />
 		<property name="appName" />
-		<property name="SoaId" />
 		<property name="jndiName" />
 		<property name="controlDir" />
 		<property name="AppPath" />
 		<property name="PlanPath" />
-		<property name="Target" />
-		<property name="createOrder" kind="integer" default="62" hidden="true"/>
-		<property name="modifyOrder" kind="integer" default="62" hidden="true"/>
-		<property name="destroyOrder" kind="integer" default="39" hidden="true"/>
 	</type>
 
-	<type type="soa.JMSConnectionFactory" extends="wls.Resource" deployable-type="soa.JMSConnectionFactorySpec" container-type="wls.WlsContainer">
-         <generate-deployable type="soa.JMSConnectionFactorySpec" extends="wls.ResourceSpec" description="Specification for a JMS connection factory" />
+	<type type="soa.JMSConnectionFactory" extends="soa.Resource" deployable-type="soa.JMSConnectionFactorySpec" container-type="wls.WlsContainer">
+         <generate-deployable type="soa.JMSConnectionFactorySpec" extends="soa.ResourceSpec" description="Specification for a JMS connection factory" />
          <property name="createScript" default="scripts/create-jmsConnectionFactory.py" hidden="true" />
          <property name="destroyScript" default="scripts/destroy-jmsConnectionFactory.py" hidden="true" />
          <property name="retainRemoteWorkingDirectory" kind="boolean" default="true" hidden="true" required="false" />
          <property name="appName" />
          <property name="dataSourceType" />
-         <property name="SoaId" />
          <property name="jndiName" />
          <property name="dsJndiName" />
          <property name="AppPath" />
          <property name="PlanPath" />
-         <property name="Target" />
-		 <property name="createOrder" kind="integer" default="62" hidden="true"/>
-		 <property name="modifyOrder" kind="integer" default="62" hidden="true"/>
-		 <property name="destroyOrder" kind="integer" default="39" hidden="true"/>
 	</type>
 
 

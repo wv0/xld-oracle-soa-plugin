@@ -52,7 +52,9 @@ cfAppPath = deployed.AppPath
 cfId = deployed.SoaId
 cfJndiName = deployed.jndiName
 cfPlanPath = deployed.PlanPath
-cfTarget = deployed.Target
+cfTarget = deployed.container.name
+if deployed.Target:
+	cfTarget = deployed.Target
 cfMqChannel = deployed.Channel
 cfMqHostName = deployed.HostName
 cfMqPortName = deployed.PortNumber
