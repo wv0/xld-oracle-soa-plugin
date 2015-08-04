@@ -47,14 +47,14 @@ def checkPlanPath(planPath):
 # Start main function
 connectAndEdit()
 
+connection_factory = ConnectionFactory(deployed)
+cfId = connection_factory.get_cf_id()
+cfTarget = connection_factory.get_cf_target()
+
 cfAppName = deployed.appName
 cfAppPath = deployed.AppPath
-cfId = deployed.SoaId
 cfJndiName = deployed.jndiName
 cfPlanPath = deployed.PlanPath
-cfTarget = deployed.container.name
-if deployed.Target:
-	cfTarget = deployed.Target
 cfMqChannel = deployed.Channel
 cfMqHostName = deployed.HostName
 cfMqPortName = deployed.PortNumber

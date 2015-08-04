@@ -13,14 +13,28 @@ apply plugin: 'maven'
 group = 'com.xebialabs.deployit.community'
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
-version = '1.1.1'
+version = '1.2.0'
 
 repositories {
     mavenLocal()
     mavenCentral()
-
 }
 
+
+dependencies {
+    compile "org.python:jython:2.7.0"
+}
+
+sourceSets.main.resources.srcDirs = ["src/main/jython", "src/main/resources"]
+sourceSets.test.resources.srcDirs = ["src/test/jython", "src/test/resources"]
+
+task testJython(type: Exec, dependsOn: ['testClasses']) {
+    environment = ["CLASSPATH": sourceSets.test.runtimeClasspath.asPath, "PATH": System.getenv("PATH"), "HOME": System.getenv("HOME")]
+    commandLine jythonInterpreter, "$projectDir/src/test/jython/xlnoserunner/runtests.py", "$projectDir/src/test/jython/oracleSoaTests", buildDir
+    workingDir = projectDir
+}
+
+test.dependsOn testJython
 
 license {
     header rootProject.file('src/main/license/xebialabs_community.license')

@@ -47,16 +47,16 @@ def checkPlanPath(planPath):
 # Start main function
 connectAndEdit()
 
+connection_factory = ConnectionFactory(deployed)
+cfId = connection_factory.get_cf_id()
+cfTarget = connection_factory.get_cf_target()
+
 cfAppName = deployed.appName
 cfAppPath = deployed.AppPath
 cfDsType = deployed.dataSourceType
-cfId = deployed.SoaId
 cfJndiName = deployed.jndiName
 cfPlanPath = deployed.PlanPath
 dsJndiName = deployed.dsJndiName
-cfTarget = deployed.container.name
-if deployed.Target:
-	cfTarget = deployed.Target
 
 checkPlanPath(cfPlanPath)
 

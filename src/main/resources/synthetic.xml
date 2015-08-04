@@ -46,8 +46,10 @@
 
 	<type type="soa.Resource" extends="wls.Resource" deployable-type="soa.ResourceSpec" container-type="wls.WlsContainer" virtual="true">
 		<generate-deployable type="soa.ResourceSpec" extends="wls.ResourceSpec" description="Specification for a SOA Resource" />
-		<property name="SoaId" required="true" kind="string" description="Makes the deployment plan variables unique"/>
+		<property name="SoaId" required="false" kind="string" description="Makes the deployment plan variables unique. If not defined the name of the ConnectionFactory will be used."/>
 		<property name="Target" required="false" kind="string" description="The target container to map the SOA Resource to. If not defined, the mapped container name will be used."/>
+
+		<property name="libraryScripts" kind="list_of_string" default="soa/runtime/ConnectionFactory.py" hidden="true"/>
 		<property name="createOrder" kind="integer" default="62" hidden="true"/>
 		<property name="modifyOrder" kind="integer" default="62" hidden="true"/>
 		<property name="destroyOrder" kind="integer" default="39" hidden="true"/>
