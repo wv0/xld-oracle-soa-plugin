@@ -17,15 +17,17 @@ try:
     print 'set deployedServiceName to ' + deployedServiceName
 except AttributeError:
     deployedServiceName = deployed.name
-    print 'Attribute soaServiceName does not exist, using deployed.Name: ' + deployed.Name
+    print 'Attribute soaServiceName does not exist, using deployed.name: ' + deployed.name
 
 print 'undeploy ' + deployedServiceName
+
+revision_version = SoaHelper(deployed).find_revision()
 
 old_stdout = sys.stdout
 redirectedStdout = StringIO()
 sys.stdout = redirectedStdout
 serverUrl="http://"+deployed.container.domain.host.address+":"+str(deployed.container.domain.soaPort)
-sca_undeployComposite(serverUrl, deployedServiceName, deployed.revisionVersion, deployed.container.domain.username, deployed.container.domain.password, partition=deployed.partition)
+sca_undeployComposite(serverUrl, deployedServiceName, revision_version, deployed.container.domain.username, deployed.container.domain.password, partition=deployed.partition)
 sys.stdout = old_stdout
 result_string = redirectedStdout.getvalue()
 print 'result'

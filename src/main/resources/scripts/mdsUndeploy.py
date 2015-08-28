@@ -4,8 +4,6 @@
 # FOR A PARTICULAR PURPOSE. THIS CODE AND INFORMATION ARE NOT SUPPORTED BY XEBIALABS.
 #
 
-import glob
-
 print 'undeploy ' + deployed.name
 
 thefolder=str(deployed.name) 

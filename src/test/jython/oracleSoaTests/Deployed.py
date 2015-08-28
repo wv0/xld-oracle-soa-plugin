@@ -6,8 +6,10 @@
 
 class Deployed(object):
 
-    def __init__(self, container, name, target="", soa_id=""):
+    def __init__(self, container, name, target="", soa_id="", file="", revision_version=""):
         self.container = container
         self.name = name
         self.Target = target
         self.SoaId = soa_id
+        self.file = file
+        self.revisionVersion = revision_version

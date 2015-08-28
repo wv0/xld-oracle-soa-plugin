@@ -14,9 +14,10 @@
 	<type type="soa.CompositeSOADeployable" extends="wls.ExtensibleDeployedArtifact" deployable-type="soa.CompositeSOADeployableSpec" container-type="wls.WlsContainer">
 		<generate-deployable type="soa.CompositeSOADeployableSpec" extends="udm.BaseDeployableFolderArtifact" />
 		<property name="partition" />
-		<property name="revisionVersion" description="The revision version (will be used in case of undeployment)"/>
+		<property name="revisionVersion" kind="string" required="false" description="The revision version (will be used in case of undeployment), if not defined revision from jar file name will be used."/>
 		<property name="soaServiceName" kind="string" required="false" default="" />
 		<property name="forcedefault" kind="string" />
+
 		<property name="createScript" default="scripts/soaDeploy.py" hidden="true" />
 		<property name="modifyScript" default="scripts/soaDeploy.py" hidden="true" />
 		<property name="destroyScript" default="scripts/soaUndeploy.py" hidden="true" />
@@ -27,6 +28,7 @@
 		<property name="modifyOrder" kind="integer" default="65" hidden="true"/>
 		<property name="destroyOrder" kind="integer" default="38" hidden="true"/>
 		<property name="isStartOrStopOperationRequired" default="false" hidden="true" kind="boolean"/>
+		<property name="libraryScripts" kind="list_of_string" default="soa/runtime/SoaHelper.py" hidden="true"/>
 	</type>
 
 
