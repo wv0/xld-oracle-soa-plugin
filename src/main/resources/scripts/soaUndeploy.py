@@ -8,35 +8,30 @@ from StringIO import StringIO
 import sys
 # Start main function
 
-# Backward compatibility: in services gedeployed met de 0.0.1 versie van deze plugin
-# is serviceName niet gedefinieerd.
-try:
-    deployedServiceName = deployed.soaServiceName
-    if deployedServiceName == "":
-    	deployedServiceName = deployed.name
-    print 'set deployedServiceName to ' + deployedServiceName
-except AttributeError:
-    deployedServiceName = deployed.name
-    print 'Attribute soaServiceName does not exist, using deployed.name: ' + deployed.name
-
-print 'undeploy ' + deployedServiceName
-
-revision_version = SoaHelper(deployed).find_revision()
+soa_helper = SoaHelper(deployed)
+deployed_service_name = soa_helper.find_service_name()
+revision_version = soa_helper.find_revision()
 
 old_stdout = sys.stdout
 redirectedStdout = StringIO()
 sys.stdout = redirectedStdout
 serverUrl="http://"+deployed.container.domain.host.address+":"+str(deployed.container.domain.soaPort)
-sca_undeployComposite(serverUrl, deployedServiceName, revision_version, deployed.container.domain.username, deployed.container.domain.password, partition=deployed.partition)
+if deployed.retire:
+    print 'retire', deployed_service_name
+    sca_retireComposite(deployed.container.domain.host.address, str(deployed.container.domain.soaPort), deployed.container.domain.username, deployed.container.domain.password, deployed_service_name, revision_version, partition=deployed.partition)
+else:
+    print 'undeploy', deployed_service_name
+    sca_undeployComposite(serverUrl, deployed_service_name, revision_version, deployed.container.domain.username, deployed.container.domain.password, partition=deployed.partition)
+
 sys.stdout = old_stdout
 result_string = redirectedStdout.getvalue()
 print 'result'
 print result_string
 result = "-1"
 if ('---->Undeploying composite' in result_string) and ('success.' in result_string):
-	print 'ok'
-	result = "0"
+    print 'ok'
+    result = "0"
 else:
-	print 'error'
+    print 'error'
 
 print "DEPLOYIT-DAEMON-EXIT-VALUE: " + result

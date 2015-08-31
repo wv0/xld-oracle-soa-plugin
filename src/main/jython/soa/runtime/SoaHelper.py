@@ -19,3 +19,18 @@ class SoaHelper(object):
         if jars and len(jars) > 0:
             jar_name = jars[0]
             return jar_name[jar_name.find("_rev")+len("_rev"):jar_name.rfind(".jar")]
+
+    def find_service_name(self):
+        # Backward compatibility: in services gedeployed met de 0.0.1 versie van deze plugin
+        #  is serviceName niet gedefinieerd.
+        try:
+            deployed_service_name = self.deployed.soaServiceName
+            if deployed_service_name == "":
+                deployed_service_name = self.deployed.name
+            print 'set deployed_service_name to ' + deployed_service_name
+        except AttributeError:
+            deployed_service_name = self.deployed.name
+            print 'Attribute soaServiceName does not exist, using deployed.name: ' + self.deployed.name
+
+        return deployed_service_name
+

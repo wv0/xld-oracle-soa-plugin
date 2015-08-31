@@ -29,3 +29,13 @@ class TestSoaHelper(object):
         deployed = Deployed(None,"test1",revision_version="1.2.3")
         soa_helper = SoaHelper(deployed)
         eq_(soa_helper.find_revision(), "1.2.3")
+
+    def test_get_service_name_from_name(self):
+        deployed = Deployed(None,"test1")
+        soa_helper = SoaHelper(deployed)
+        eq_(soa_helper.find_service_name(), "test1")
+
+    def test_get_service_name_from_soa_service_name(self):
+        deployed = Deployed(None,"test1", soa_service_name="soa_service_name")
+        soa_helper = SoaHelper(deployed)
+        eq_(soa_helper.find_service_name(), "soa_service_name")
