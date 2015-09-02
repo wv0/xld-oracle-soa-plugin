@@ -36,7 +36,7 @@ sca_createPartition(partitionName = deployed.partition)
 sys.stdout = old_stdout
 result_string = redirectedStdout.getvalue()
 if 'Exception:' in result_string and 'already exists' in result_string:
-	print 'Partition already exists, ignoring'
+    print 'Partition already exists, ignoring'
 
 disconnect()
 
@@ -71,13 +71,16 @@ result_string = redirectedStdout.getvalue()
 print 'result'
 print result_string
 if '--->Deploying composite success.' in result_string:
-	print 'ok'
-	result = "0"
+    print 'ok'
+    result = "0"
 else:
-	print 'error'
+    print 'error'
 
 print "DEPLOYIT-DAEMON-EXIT-VALUE: " + result
 
 # Restore connection to the admin server (Needed in case weblogic daemon is used.
 admin_server_url=deployed.container.domain.protocol+"://"+deployed.container.domain.hostname+":"+str(deployed.container.domain.port)
 connect(deployed.container.domain.username, deployed.container.domain.password, admin_server_url)
+
+if result != "0":
+    raise Exception('Deployment failed')

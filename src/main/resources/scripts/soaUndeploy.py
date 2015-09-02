@@ -35,3 +35,5 @@ else:
     print 'error'
 
 print "DEPLOYIT-DAEMON-EXIT-VALUE: " + result
+if result != "0":
+    raise Exception('Undeployment failed')
