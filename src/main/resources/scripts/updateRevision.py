@@ -12,25 +12,17 @@ class SoaHelper(object):
         self.deployed = deployed
 
     def find_revision(self):
-        theurl=str(self.deployed.file)
+        theurl=str(self.deployed.file.path)
+        print "Using url %s" % theurl
         jars=glob.glob(theurl+'/*.jar')
         if self.deployed.revisionVersion:
+            print "Using deployed revision version %s" % self.deployed.revisionVersion
             return self.deployed.revisionVersion
         if jars and len(jars) > 0:
             jar_name = jars[0]
+            print "Using jar name revision version %s" % jar_name
             return jar_name[jar_name.find("_rev")+len("_rev"):jar_name.rfind(".jar")]
 
-    def find_service_name(self):
-        # Backward compatibility: in services gedeployed met de 0.0.1 versie van deze plugin
-        #  is serviceName niet gedefinieerd.
-        try:
-            deployed_service_name = self.deployed.soaServiceName
-            if deployed_service_name == "":
-                deployed_service_name = self.deployed.name
-            print 'set deployed_service_name to ' + deployed_service_name
-        except AttributeError:
-            deployed_service_name = self.deployed.name
-            print 'Attribute soaServiceName does not exist, using deployed.name: ' + self.deployed.name
-
-        return deployed_service_name
-
+soa_helper = SoaHelper(deployed)
+revision_version = soa_helper.find_revision()
+deployed.values["revisionVersion"] = revision_version

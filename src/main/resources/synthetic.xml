@@ -29,7 +29,6 @@
 		<property name="modifyOrder" kind="integer" default="65" hidden="true"/>
 		<property name="destroyOrder" kind="integer" default="38" hidden="true"/>
 		<property name="isStartOrStopOperationRequired" default="false" hidden="true" kind="boolean"/>
-		<property name="libraryScripts" kind="list_of_string" default="soa/runtime/SoaHelper.py" hidden="true"/>
 	</type>
 
 

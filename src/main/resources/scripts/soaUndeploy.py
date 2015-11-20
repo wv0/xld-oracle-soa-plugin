@@ -8,20 +8,16 @@ from StringIO import StringIO
 import sys
 # Start main function
 
-soa_helper = SoaHelper(deployed)
-deployed_service_name = soa_helper.find_service_name()
-revision_version = soa_helper.find_revision()
-
 old_stdout = sys.stdout
 redirectedStdout = StringIO()
 sys.stdout = redirectedStdout
 serverUrl="http://"+deployed.container.domain.host.address+":"+str(deployed.container.domain.soaPort)
 if deployed.retire:
-    print 'retire', deployed_service_name
-    sca_retireComposite(deployed.container.domain.host.address, str(deployed.container.domain.soaPort), deployed.container.domain.username, deployed.container.domain.password, deployed_service_name, revision_version, partition=deployed.partition)
+    print 'retire', deployed.soaServiceName
+    sca_retireComposite(deployed.container.domain.host.address, str(deployed.container.domain.soaPort), deployed.container.domain.username, deployed.container.domain.password, deployed.soaServiceName, deployed.revisionVersion, partition=deployed.partition)
 else:
-    print 'undeploy', deployed_service_name
-    sca_undeployComposite(serverUrl, deployed_service_name, revision_version, deployed.container.domain.username, deployed.container.domain.password, partition=deployed.partition)
+    print 'undeploy', deployed.soaServiceName
+    sca_undeployComposite(serverUrl, deployed.soaServiceName, deployed.revisionVersion, deployed.container.domain.username, deployed.container.domain.password, partition=deployed.partition)
 
 sys.stdout = old_stdout
 result_string = redirectedStdout.getvalue()
