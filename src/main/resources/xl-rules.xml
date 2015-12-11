@@ -12,6 +12,10 @@
         <planning-script-path>planning/update-extension-library.py</planning-script-path>
     </rule>
 
+    <rule name="soa.CompositeSOADeployable.CheckServerHostnames" scope="pre-plan">
+        <planning-script-path>planning/check-container-hostnames.py</planning-script-path>
+    </rule>
+
     <rule name="soa.CompositeSOADeployable.UpdateRevision" scope="deployed">
         <conditions>
             <type>soa.CompositeSOADeployable</type>
