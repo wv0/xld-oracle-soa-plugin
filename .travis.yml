@@ -1,7 +1,8 @@
 language: java
 sudo: true
 before_install:
-- sudo apt-cache search jython
+- sudo apt-get update -q
+- sudo apt-get install jython -y
 - mkdir -p ~/.gradle
 - echo jythonInterpreter=jython >> ~/.gradle/gradle.properties
 script: gradle check -PjythonInterpreter=jython
