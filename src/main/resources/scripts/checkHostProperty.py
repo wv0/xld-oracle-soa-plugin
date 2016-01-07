@@ -13,7 +13,7 @@ class SoaHelper(object):
 
     def check_host_property(self):
         if self.container.type == "wls.Cluster":
-            if self.container.servers is None or self.container.servers[0].host is None:
+            if self.container.servers is None or self.container.servers.pop().host is None:
                 return False
         else:
             if self.container.host is None:
