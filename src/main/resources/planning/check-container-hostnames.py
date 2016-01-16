@@ -11,7 +11,7 @@ def containers():
     for _delta in specification.deltas:
         depl = _delta.deployedOrPrevious
         current_container = depl.container
-        if depl.type == "soa.CompositeSOADeployable" and current_container.type in ("wls.Server",'wls.Cluster'):
+        if depl.type in ("soa.CompositeSOADeployable","soa.Composite") and current_container.type in ("wls.Server",'wls.Cluster'):
             result.add(current_container)
     return result
 

@@ -11,6 +11,20 @@
 		<property name="soaPort" required="true" description="Soa port to be used for bpel deployment" category="SOA" />
 	</type-modification>
 
+	<type type="soa.Mds" extends="soa.MdsSOADeployable" deployable-type="soa.MdsSpec" container-type="wls.WlsContainer">
+		<generate-deployable type="soa.MdsSpec" extends="soa.MdsSOADeployableSpec" copy-default-values="true" />
+	</type>
+
+	<type-modification type="soa.MdsSpec">
+		<property name="scanPlaceholders" kind="boolean" default="true" required="false" />
+	</type-modification>
+
+	<type type="soa.Composite" extends="soa.CompositeSOADeployable" deployable-type="soa.CompositeSpec" container-type="wls.WlsContainer">
+		<generate-deployable type="soa.CompositeSpec" extends="soa.CompositeSOADeployableSpec" />
+	</type>
+
+	<!-- The types soa.CompositeSOADeployable and soa.CompositeSOADeployableSpec are deprecated. From version 2.0.0. they will be removed.
+	     Use soa.Composite and soa.CompositeSpec instead -->
 	<type type="soa.CompositeSOADeployable" extends="wls.ExtensibleDeployedArtifact" deployable-type="soa.CompositeSOADeployableSpec" container-type="wls.WlsContainer">
 		<generate-deployable type="soa.CompositeSOADeployableSpec" extends="udm.BaseDeployableFolderArtifact" />
 		<property name="partition" />
@@ -32,8 +46,10 @@
 	</type>
 
 
+	<!-- The types soa.MdsSOADeployable and soa.MdsSOADeployableSpec are deprecated. From version 2.0.0. they will be removed.
+             Use soa.Mds and soa.MdsSpec instead -->
 	<type type="soa.MdsSOADeployable" extends="wls.ExtensibleDeployedArtifact" deployable-type="soa.MdsSOADeployableSpec" container-type="wls.WlsContainer">
-		<generate-deployable type="soa.MdsSOADeployableSpec" extends="udm.BaseDeployableArtifact" copy-default-values="true" />
+		<generate-deployable type="soa.MdsSOADeployableSpec" extends="udm.BaseDeployableArchiveArtifact" copy-default-values="true" />
 		<property name="forcedefault" kind="string" default="true" />
 		<property name="createScript" default="scripts/mdsDeploy.py" hidden="true" />
 		<property name="order" default="75" hidden="true" />

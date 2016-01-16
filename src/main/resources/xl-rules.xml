@@ -19,6 +19,7 @@
     <rule name="soa.CompositeSOADeployable.UpdateRevision" scope="deployed">
         <conditions>
             <type>soa.CompositeSOADeployable</type>
+            <type>soa.Composite</type>
             <operation>CREATE</operation>
             <operation>MODIFY</operation>
         </conditions>
