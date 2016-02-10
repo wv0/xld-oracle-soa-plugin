@@ -4,6 +4,17 @@
 # FOR A PARTICULAR PURPOSE. THIS CODE AND INFORMATION ARE NOT SUPPORTED BY XEBIALABS.
 #
 
+# gpaulissen  10-FEB-2016  Remove data if necessary (copied from mdsUndeploy.py)
+
+if deployed.removeDataBeforeDeployment:
+    print 'undeploy ' + deployed.name
+    thefolder=str(deployed.name) 
+    serverUrl="http://"+deployed.container.domain.host.address+":"+str(deployed.container.domain.port)
+    sca_removeSharedData(serverUrl, thefolder, deployed.container.domain.username, deployed.container.domain.password)
+
+
+# gpaulissen  10-FEB-2016  Normal deployment continues here    
+
 deployedName=str(deployed.name)
 
 print 'Processing [' + deployedName + ']'

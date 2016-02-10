@@ -60,7 +60,8 @@
 		<property name="modifyScript" default="scripts/mdsDeploy.py" hidden="true" />
 		<property name="destroyScript" default="scripts/mdsUndeploy.py" hidden="true" />
 		<property name="isStartOrStopOperationRequired" default="false" hidden="true" kind="boolean"/>
-	</type>
+    <property name="removeDataBeforeDeployment" kind="boolean" required="true" hidden="false" default="true" description="Remove data in Oracle MDS before deployment."/>
+  </type>
 
 	<type type="soa.Resource" extends="wls.Resource" deployable-type="soa.ResourceSpec" container-type="wls.WlsContainer" virtual="true">
 		<generate-deployable type="soa.ResourceSpec" extends="wls.ResourceSpec" description="Specification for a SOA Resource" />
