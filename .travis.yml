@@ -14,7 +14,7 @@ deploy:
   provider: releases
   api_key:
     secure: fMvxw11xYVblDZm5nSzLxAYMiX8OUkn6GNN9wy3xR1MwUcVyAjT5JbcNmImShUS6iyCfjNu7eZ1QYdW7ORJLeHRmdVs4zPe6Aciz5jJsAUe3sbDrgaQ67YSZhCS35qnLuH1tMjDQn2rWGAogR9DblTgtLpkgT3PN+jHIwvSLbfo=
-  file: build/distributions/xld-oracle-soa-plugin-1.4.0.xldp
+  file: build/distributions/xld-oracle-soa-plugin-1.5.0.xldp
   skip_cleanup: true
   on:
     all_branches: true
