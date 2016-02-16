@@ -56,3 +56,4 @@ Place the plugin xldp file into your `SERVER_HOME/plugins` directory.
 
 * `soa.Mds`
 	  * removeDataBeforeDeployment - `boolean` - Remove data in Oracle MDS before deployment.
+	  * folderNameToRemove - `string` - The MDS folder name (below /apps) to remove.

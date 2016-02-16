@@ -60,7 +60,11 @@
 		<property name="modifyScript" default="scripts/mdsDeploy.py" hidden="true" />
 		<property name="destroyScript" default="scripts/mdsUndeploy.py" hidden="true" />
 		<property name="isStartOrStopOperationRequired" default="false" hidden="true" kind="boolean"/>
-    <property name="removeDataBeforeDeployment" kind="boolean" required="true" hidden="false" default="true" description="Remove data in Oracle MDS before deployment."/>
+		<property name="removeDataBeforeDeployment" kind="boolean" required="true" hidden="false" default="true" description="Remove data in Oracle MDS before deployment."/>
+		<property name="folderNameToRemove" 
+              kind="string" 
+              required="false"
+              hidden="false" description="The MDS folder name (below /apps) to remove."/>
   </type>
 
 	<type type="soa.Resource" extends="wls.Resource" deployable-type="soa.ResourceSpec" container-type="wls.WlsContainer" virtual="true">
