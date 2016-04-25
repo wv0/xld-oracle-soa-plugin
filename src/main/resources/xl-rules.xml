@@ -12,9 +12,35 @@
         <planning-script-path>planning/update-extension-library.py</planning-script-path>
     </rule>
 
+    <rule name="soa.CompositeSOADeployable.CheckServerHostnames" scope="pre-plan">
+        <planning-script-path>planning/check-container-hostnames.py</planning-script-path>
+    </rule>
 
-
-
-
+    <rule name="soa.CompositeSOADeployable.UpdateRevision" scope="deployed">
+        <conditions>
+            <type>soa.CompositeSOADeployable</type>
+            <type>soa.Composite</type>
+            <operation>CREATE</operation>
+            <operation>MODIFY</operation>
+        </conditions>
+        <steps>
+            <jython>
+                <description expression="true">"Update RevisionVersion for " + deployed.name</description>
+                <order>66</order>
+                <script>scripts/updateRevision.py</script>
+                <jython-context>
+                    <deployed expression="true">deployed</deployed>
+                </jython-context>
+            </jython>
+            <jython>
+                <description expression="true">"Update soaServiceName for " + deployed.name</description>
+                <order>66</order>
+                <script>scripts/updateSoaServiceName.py</script>
+                <jython-context>
+                    <deployed expression="true">deployed</deployed>
+                </jython-context>
+            </jython>
+        </steps>
+    </rule>
 
 </rules>
