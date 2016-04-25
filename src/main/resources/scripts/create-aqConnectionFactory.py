@@ -53,27 +53,19 @@ cfTarget = connection_factory.get_cf_target()
 
 cfAppName = deployed.appName
 cfAppPath = deployed.AppPath
-
+cfDsType = deployed.dataSourceType
 cfJndiName = deployed.jndiName
-cfConnectionFactoryLocation = deployed.ConnectionFactoryLocation
-cfAcknowledgeMode = deployed.AcknowledgeMode
-cfIsTransacted = deployed.IsTransacted
-
 cfPlanPath = deployed.PlanPath
+dsJndiName = deployed.dsJndiName
 
 checkPlanPath(cfPlanPath)
 
 print 'Loading application [' + cfAppName + '] with deployment plan [' + cfPlanPath + ']'
 plan = loadApplication(cfAppPath, cfPlanPath)
-
+	
 print 'Updating deployment plan with connection factory: [' + cfJndiName + ']'
-make_deployment_plan_variable(plan, 'ConnectionInstance_' + cfJndiName + '_JNDIName_' + cfId, cfJndiName, '/weblogic-connector/outbound-resource-adapter/connection-definition-group/[connection-factory-interface="oracle.tip.adapter.jms.IJmsConnectionFactory"]/connection-instance/[jndi-name="' + cfJndiName + '"]/jndi-name', moduleOverrideName=cfAppName + '.rar')
-
-make_deployment_plan_variable(plan, 'ConfigProperty_ConnectionFactoryLocation_Value_' + cfId, cfConnectionFactoryLocation, '/weblogic-connector/outbound-resource-adapter/connection-definition-group/[connection-factory-interface="oracle.tip.adapter.jms.IJmsConnectionFactory"]/connection-instance/[jndi-name="' + cfJndiName + '"]/connection-properties/properties/property/[name="ConnectionFactoryLocation"]/value', moduleOverrideName=cfAppName + '.rar')
-
-make_deployment_plan_variable(plan, 'ConfigProperty_AcknowledgeMode_Value_' + cfId, cfAcknowledgeMode, '/weblogic-connector/outbound-resource-adapter/connection-definition-group/[connection-factory-interface="oracle.tip.adapter.jms.IJmsConnectionFactory"]/connection-instance/[jndi-name="' + cfJndiName + '"]/connection-properties/properties/property/[name="AcknowledgeMode"]/value', moduleOverrideName=cfAppName + '.rar')
-
-make_deployment_plan_variable(plan, 'ConfigProperty_IsTransacted_Value_' + cfId, cfIsTransacted, '/weblogic-connector/outbound-resource-adapter/connection-definition-group/[connection-factory-interface="oracle.tip.adapter.jms.IJmsConnectionFactory"]/connection-instance/[jndi-name="' + cfJndiName + '"]/connection-properties/properties/property/[name="IsTransacted"]/value', moduleOverrideName=cfAppName + '.rar')
+make_deployment_plan_variable(plan, 'ConnectionInstance_' + cfJndiName + '_JNDIName_' + cfId, cfJndiName, '/weblogic-connector/outbound-resource-adapter/connection-definition-group/[connection-factory-interface="javax.resource.cci.ConnectionFactory"]/connection-instance/[jndi-name="' + cfJndiName + '"]/jndi-name', moduleOverrideName=cfAppName + '.rar')
+make_deployment_plan_variable(plan, 'ConfigProperty_' + cfDsType + '_Value_' + cfId, dsJndiName, '/weblogic-connector/outbound-resource-adapter/connection-definition-group/[connection-factory-interface="javax.resource.cci.ConnectionFactory"]/connection-instance/[jndi-name="' + cfJndiName + '"]/connection-properties/properties/property/[name="' + cfDsType + '"]/value', moduleOverrideName=cfAppName + '.rar')
 	
 plan.save()
 

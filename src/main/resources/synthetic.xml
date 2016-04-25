@@ -83,7 +83,20 @@
 		<property name="createScript" default="scripts/create-dbConnectionFactory.py" hidden="true" />
 		<property name="destroyScript" default="scripts/destroy-dbConnectionFactory.py" hidden="true" />
 		<property name="retainRemoteWorkingDirectory" kind="boolean" default="true" hidden="true" required="false" />
-		<property name="appName" />
+		<property name="appName" default="DbAdapter" />
+		<property name="dataSourceType" />
+		<property name="jndiName" />
+		<property name="dsJndiName" />
+		<property name="AppPath" />
+		<property name="PlanPath" />
+	</type>
+
+	<type type="soa.AQConnectionFactory" extends="soa.Resource" deployable-type="soa.AQConnectionFactorySpec" container-type="wls.WlsContainer">
+		<generate-deployable type="soa.AQConnectionFactorySpec" extends="soa.ResourceSpec" description="Specification for a AQ connection factory" />
+		<property name="createScript" default="scripts/create-aqConnectionFactory.py" hidden="true" />
+		<property name="destroyScript" default="scripts/destroy-aqConnectionFactory.py" hidden="true" />
+		<property name="retainRemoteWorkingDirectory" kind="boolean" default="true" hidden="true" required="false" />
+		<property name="appName" default="AqAdapter" />
 		<property name="dataSourceType" />
 		<property name="jndiName" />
 		<property name="dsJndiName" />
@@ -96,7 +109,7 @@
 		<property name="createScript" default="scripts/create-mqConnectionFactory.py" hidden="true" />
 		<property name="destroyScript" default="scripts/destroy-mqConnectionFactory.py" hidden="true" />
 		<property name="retainRemoteWorkingDirectory" kind="boolean" default="true" hidden="true" required="false" />
-		<property name="appName" />
+		<property name="appName" default="MQSeriesAdapter"/>
 		<property name="jndiName" />
 		<property name="Channel" />
 		<property name="HostName" />
@@ -111,7 +124,7 @@
 		<property name="createScript" default="scripts/create-ftpConnectionFactory.py" hidden="true" />
 		<property name="destroyScript" default="scripts/destroy-ftpConnectionFactory.py" hidden="true" />
 		<property name="retainRemoteWorkingDirectory" kind="boolean" default="true" hidden="true" required="false" />
-		<property name="appName" />
+		<property name="appName" default="FtpAdapter"/>
 		<property name="jndiName" />
 		<property name="HostName" />
 		<property name="username" />
@@ -125,7 +138,7 @@
 		<property name="createScript" default="scripts/create-fileConnectionFactory.py" hidden="true" />
 		<property name="destroyScript" default="scripts/destroy-fileConnectionFactory.py" hidden="true" />
 		<property name="retainRemoteWorkingDirectory" kind="boolean" default="true" hidden="true" required="false" />
-		<property name="appName" />
+		<property name="appName" default="FileAdapter"/>
 		<property name="jndiName" />
 		<property name="controlDir" />
 		<property name="AppPath" />
@@ -137,10 +150,11 @@
          <property name="createScript" default="scripts/create-jmsConnectionFactory.py" hidden="true" />
          <property name="destroyScript" default="scripts/destroy-jmsConnectionFactory.py" hidden="true" />
          <property name="retainRemoteWorkingDirectory" kind="boolean" default="true" hidden="true" required="false" />
-         <property name="appName" />
-         <property name="dataSourceType" />
+         <property name="appName" default="JmsAdapter" />
          <property name="jndiName" />
-         <property name="dsJndiName" />
+         <property name="ConnectionFactoryLocation" />
+         <property name="AcknowledgeMode" required="false" default="AUTO_ACKNOWLEDGE" />
+         <property name="IsTransacted" default="false" />
          <property name="AppPath" />
          <property name="PlanPath" />
 	</type>
